@@ -1,9 +1,12 @@
-# idevicerestore-gui
+# iDeviceRestore GUI
+Forked from JoseCarlosGarcia95 idevicerestore-gui
+
 Restore your iDevice without iTunes
 
-- iOS 4, 5, 6, 7, 8, 9, 10
-- Using libimobildevice, idevicerestore, libirecovery
-- Thank you to https://github.com/elrhk/Libimobiledevice-idevicerestore-for-Windows
+- Compatible with up to iOS 13
+- Ability to download beta IPSW's from the program
+- Uses libimobildevice, idevicerestore, libirecovery
+- Based off of https://github.com/elrhk/Libimobiledevice-idevicerestore-for-Windows
 
 
 ## Download a compiled version!
