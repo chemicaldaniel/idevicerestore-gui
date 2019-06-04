@@ -8,7 +8,6 @@ Restore your iDevice without iTunes
 - Uses libimobildevice, idevicerestore, libirecovery
 - Based off of https://github.com/elrhk/Libimobiledevice-idevicerestore-for-Windows
 
-
-## Download a compiled version!
-- Go to https://github.com/BananaProject/idevicerestore-gui/releases
+## How do I download?
+- Go to https://github.com/chemicaldaniel/idevicerestore-gui/releases
 - Download the latest version!
