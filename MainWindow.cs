@@ -17,13 +17,7 @@ namespace IPSW_Restorer
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            StringBuilder information = new StringBuilder();
-            information.AppendLine("- iOS 10<= support.");
-            information.AppendLine("- No iTunes needed.");
-            information.AppendLine("- Using a precompiled version for Windows! / https://github.com/elrhk/Libimobiledevice-idevicerestore-for-Windows");
-            information.AppendLine("- Using libimobiledevice, libirecovery & idevicerestore.");
 
-            MessageBox.Show(information.ToString(), "IPSW Restore about", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void fileButton_Click(object sender, EventArgs e)
@@ -43,48 +37,28 @@ namespace IPSW_Restorer
             // cmd.Append("idevicrestore.exe ");
 
             // Step 1
-            if (latestFirmware.Checked)
+            if (ipswFilePath == null)
             {
-                cmd.Append("-l ");
-            }
-            else if (ipswFilePath == null)
-            {
-                MessageBox.Show("No ipsw selected!", "Select one option in the first step", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No IPSW files selected!", "idevicerestore-gui", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Step 2
 
-            if(basebandOption.Checked)
-            {
-                cmd.Append("-x ");
-            }
-
-            if(tssFromCydia.Checked)
-            {
-                cmd.Append("-s ");
-            }
-
-            if(fetchTSS.Checked)
-            {
-                cmd.Append("-t ");
-            }
-
-            if(limer4in.Checked)
-            {
-                cmd.Append("-p ");
-            }
 
             if(fullyRestore.Checked)
             {
                 cmd.Append("-e ");
             }
-
+            cmd.Append("-d ");
             if(ipswFilePath != null)
             {
                 cmd.Append(" \"" + ipswFilePath + "\" ");
             }
-
+            if(textBox1.Enabled == true)
+            {
+                cmd.Append(" " + textBox1.Text);
+            }
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -96,12 +70,31 @@ namespace IPSW_Restorer
             process.Start();
             process.WaitForExit();
 
-            MessageBox.Show("Everything done!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Process Completed!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/BananaProject/idevicerestore-gui/");
+        }
+
+        private void btnDwnldIPSW_Click(object sender, EventArgs e)
+        {
+            ipswSelector ipswSelector = new ipswSelector();
+            ipswSelector.ShowDialog();
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                textBox1.Enabled = true;
+            }
+            else
+            {
+                textBox1.Enabled = false;
+            }
         }
     }
 }
